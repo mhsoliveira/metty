@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  div.container
+    h1.page-header Support this pledge
+    img.container(src=Idea.picture)
+    h1= Idea.username
+    h2= Idea.matricula
+    h3= Idea.funds/Idea.debt+"% achieved of "+ Idea.debt
+    div.progress
+      div(class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:'Idea.funds/Idea.debt*100+'%")= Idea.funds/Idea.debt*100+"% Complete"
+
+    div(class="form-group")
+      label(for="usr") Contribute:
+      input(type="number" name="quantity" min="1" max=Idea.debt-Idea.funds class="form-control" id="inv" step="0.01")
+      label(for="usr") Credit Card Number:
+      input(type="text")
+      label(for="usr") Card Holder:
+      input(type="text")
+    button#invest(class="btn btn-lg btn-success btn-block" type="submit") Invest
+    script(src='../javascripts/invest.js')
+    if(user)
+      script(type='text/javascript').
+          var userId = "#{user.id}";
+          var ideaId = "#{Idea.id}";

@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  div.container
+    h1.page-header Investments
+    each Idea in opt
+      a.thumbnail(id='node', class='col-md-4 col-sm-6 col-xs-12', href="/crowdfundig/"+Idea._id)
+        img.draw(src=Idea.picture, style='height: 250px;')
+        div.col-xs-12(style='margin-top:5px;')
+          h1= Idea.username
+          h2= Idea.matricula
+          h3= Idea.funds/Idea.debt+"% achieved of "+ Idea.debt
